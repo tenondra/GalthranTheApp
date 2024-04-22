@@ -11,11 +11,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="6.0.0-preview.4.21253.5" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.3.24172.13"/>
+        <PackageReference Include="Microsoft.KernelMemory.AI.OpenAI" Version="0.37.240420.2" />
+        <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.37.240420.2" />
         <PackageReference Include="Microsoft.SemanticKernel" Version="1.7.1" />
         <PackageReference Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.7.1-alpha" />
         <PackageReference Include="Qdrant.Client" Version="1.8.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="System.Net.Http" Version="4.3.4" />
         <PackageReference Include="xunit.extensibility.core" Version="2.6.6" />
     </ItemGroup>
 

@@ -1,24 +1,24 @@
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Embeddings;
-
 namespace backend.EmbeddingService;
 
 public class EmbeddingService : IEmbeddingService
 {
-    private readonly Kernel _kernel;
+    private readonly IOpenAiClient _openAiClient;
 
-    private ITextEmbeddingGenerationService EmbeddingGenerationService =>
-        _kernel.GetRequiredService<ITextEmbeddingGenerationService>();
+    // private ITextEmbeddingGenerationService EmbeddingGenerationService =>
+    //     _kernel.GetRequiredService<ITextEmbeddingGenerationService>();
 
-    public EmbeddingService(IKernelFactory kernelFactory)
+    public EmbeddingService(IOpenAiClient openAiClient)
     {
-        _kernel = kernelFactory.CreateKernel();
+        _openAiClient = openAiClient;
     }
 
-    public async Task<ReadOnlyMemory<float>> GenerateEmbeddings(string text)
+    public async Task<EmbeddingResponse> GenerateEmbeddings(string text)
     {
-        var result = await EmbeddingGenerationService.GenerateEmbeddingsAsync(new List<string> { text });
+        var request = CreateRequest(text);
+        var result = await _openAiClient.CreateEmbeddingAsync(request);
 
-        return result.First();
+        return result;
     }
+
+    private EmbeddingRequest CreateRequest(string text) => new() { Input = text };
 }

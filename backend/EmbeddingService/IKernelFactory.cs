@@ -4,5 +4,5 @@ namespace backend.EmbeddingService;
 
 public interface IKernelFactory
 {
-    public Kernel CreateKernel();
+    public Kernel GetKernel();
 }

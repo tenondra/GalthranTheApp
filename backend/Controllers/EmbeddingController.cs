@@ -14,10 +14,10 @@ public class EmbeddingController : Controller
     }
     
     [HttpPost("create")]
-    public async Task<IActionResult> CreateEmbedding([FromBody] string text)
+    public async Task<IActionResult> CreateEmbedding([FromBody] EmbeddingRequestModel model)
     {
-        var result = await _embeddingService.GenerateEmbeddings(text);
+       var result = await _embeddingService.GenerateEmbeddings(model.Text);
 
-        return Ok(result);
+       return Ok(result.Data.First().Embedding);
     }
 }
