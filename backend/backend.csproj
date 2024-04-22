@@ -16,6 +16,33 @@
         <PackageReference Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.7.1-alpha" />
         <PackageReference Include="Qdrant.Client" Version="1.8.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="xunit.extensibility.core" Version="2.6.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="backend.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="backend.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="backend.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="backend.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="backend.Tests\obj\backend.Tests.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="backend.Tests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="backend.Tests\obj\project.packagespec.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="KernelService\" />
     </ItemGroup>
 
 </Project>

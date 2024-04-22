@@ -1,5 +1,4 @@
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Embeddings;
 
 namespace backend.EmbeddingService;
 

@@ -3,21 +3,16 @@ using Microsoft.SemanticKernel.Embeddings;
 
 namespace backend.EmbeddingService;
 
-public class EmbeddingService
+public class EmbeddingService : IEmbeddingService
 {
     private readonly Kernel _kernel;
 
     private ITextEmbeddingGenerationService EmbeddingGenerationService =>
         _kernel.GetRequiredService<ITextEmbeddingGenerationService>();
 
-
-    public EmbeddingService(IConfiguration configuration)
+    public EmbeddingService(IKernelFactory kernelFactory)
     {
-        var kernelBuilder = Kernel
-            .CreateBuilder()
-            .WithCustomOpenAiEmbeddingModel(configuration);
-
-        _kernel = kernelBuilder.Build();
+        _kernel = kernelFactory.CreateKernel();
     }
 
     public async Task<ReadOnlyMemory<float>> GenerateEmbeddings(string text)
