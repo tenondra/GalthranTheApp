@@ -19,8 +19,6 @@ public static class ServicesExtensions
         services.AddSingleton<IKernelFactory, KernelFactory>();
         services.AddSingleton<IOpenAiClient, OpenAiClient>();
         
-        services.AddSingleton<IScannerController, ScannerController>();
-        
         return services;
     }
 

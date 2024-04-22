@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
 
-[Route("api/embedding")]
-public class EmbeddingController : Controller
+[Route("embedding")]
+public class EmbeddingController : BaseControllerV1
 {
     private readonly IEmbeddingService _embeddingService;
 
