@@ -5,16 +5,16 @@ namespace backend.Qdrant;
 
 public class QdrantService : IQdrantService
 {
-    private readonly QdrantClient qdrantClient;
+    private readonly QdrantClient _qdrantClient;
 
     public QdrantService(IQdrantClientFactory clientFactory)
     {
-        qdrantClient = clientFactory.GetClient();
+        _qdrantClient = clientFactory.GetClient();
     }
 
     public async void CreateCollection(string collectionName)
     {
-        await qdrantClient.CreateCollectionAsync(
+        await _qdrantClient.CreateCollectionAsync(
             collectionName: collectionName,
             vectorsConfig: SetupParams());
     }
@@ -23,6 +23,6 @@ public class QdrantService : IQdrantService
 
     public async void UpsertPoint(string collectionName, float[] embedding)
     {
-        qdrantClient.UpsertAsync(collectionName, new []{ new PointStruct() {Id = new PointId(), Payload = {  }}})
+        await _qdrantClient.UpsertAsync(collectionName, new[] { new PointStruct() { Id = new PointId(), Payload = { {"value", "value"} } } });
     }
 }

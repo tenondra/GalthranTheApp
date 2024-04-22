@@ -2,5 +2,5 @@ namespace backend.Qdrant;
 
 public interface IQdrantService
 {
-    public void CreateCollection();
+    public void CreateCollection(string collectionName);
 }
