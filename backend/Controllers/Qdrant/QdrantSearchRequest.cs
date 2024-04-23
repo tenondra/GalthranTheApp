@@ -1,4 +1,4 @@
-namespace backend.Controllers;
+namespace backend.Controllers.Qdrant;
 
 public record QdrantSearchRequest()
 {

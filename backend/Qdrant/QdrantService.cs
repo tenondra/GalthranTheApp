@@ -33,7 +33,7 @@ public class QdrantService : IQdrantService
     {
         await _qdrantClient.UpsertAsync(
             CollectionName,
-            points: data.Select(item => PointStructFromDTO(item)).ToArray());
+            points: data.Select(item => PointStructFromData(item)).ToArray());
     }
 
     public async Task<string> SearchCollectionAsync(float[] embedding)
@@ -71,7 +71,7 @@ public class QdrantService : IQdrantService
         return result?.StringValue ?? "EMPTY";
     }
 
-    private PointStruct PointStructFromDTO(UpsertEmbeddingsData item) => new()
+    private PointStruct PointStructFromData(UpsertEmbeddingsData item) => new()
     {
         Id = item.GameDto.Id,
         Vectors = new Vectors(item.Embedding),

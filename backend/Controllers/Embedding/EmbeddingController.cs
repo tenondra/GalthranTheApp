@@ -1,7 +1,7 @@
 using backend.EmbeddingService;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Controllers;
+namespace backend.Controllers.Embedding;
 
 [Route("embedding")]
 public class EmbeddingController : BaseControllerV1

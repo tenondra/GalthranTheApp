@@ -1,7 +1,7 @@
 using backend.Qdrant;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Controllers;
+namespace backend.Controllers.Qdrant;
 
 [Route("qdrant")]
 public class QdrantController : BaseControllerV1

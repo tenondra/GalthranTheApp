@@ -1,4 +1,4 @@
-namespace backend.Controllers;
+namespace backend.Controllers.Embedding;
 
 public record EmbeddingRequestModel
 {
