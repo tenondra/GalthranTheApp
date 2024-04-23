@@ -13,7 +13,7 @@ public class QdrantController : BaseControllerV1
         _qdrantService = qdrantService;
     }
     
-    [HttpPut("collections")]
+    [HttpPut("collections/create")]
     public IActionResult CreateCollection([FromBody] QdrantCollectionRequest request)
     {
         _qdrantService.CreateCollectionAsync(request.CollectionName);
@@ -21,13 +21,13 @@ public class QdrantController : BaseControllerV1
         return Ok();
     }
     
-    [HttpGet("collections")]
+    [HttpGet("collections/get")]
     public IActionResult GetCollection()
     {
         return Ok();
     }
 
-    public async Task<IActionResult> Search([FromBody] QdrantSearchRequest request)
+    protected async Task<IActionResult> Search([FromBody] QdrantSearchRequest request)
     {
         string result;
         if (request.GroupId is not null)

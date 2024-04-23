@@ -1,4 +1,4 @@
-using backend.EmbeddingService;
+using backend.Services.Embedding;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers.Embedding;
