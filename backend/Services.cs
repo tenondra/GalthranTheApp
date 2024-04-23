@@ -1,25 +1,25 @@
 using System.Net.Http.Headers;
-using backend.Controllers;
-using backend.EmbeddingService;
 using backend.Qdrant;
 using backend.Services;
+using backend.Services.Embedding;
+using backend.Services.Kernel;
+using backend.Services.PdfReading;
 
 namespace backend;
 
 public static class ServicesExtensions
 {
-    private const string OpenAiClient = "OpenAiClient";
-    
     public static IServiceCollection AddProjectServices(this IServiceCollection services)
     {
         services.AddLogging();
 
         services.AddSingleton<IQdrantClientFactory, QdrantClientFactory>();
         services.AddSingleton<IQdrantService, QdrantService>();
-        services.AddSingleton<IEmbeddingService, EmbeddingService.EmbeddingService>();
+        services.AddSingleton<IEmbeddingService, EmbeddingService>();
         services.AddSingleton<IKernelFactory, KernelFactory>();
         services.AddSingleton<IOpenAiClient, OpenAiClient>();
         services.AddSingleton<ISearchService, SearchService>();
+        services.AddSingleton<IPdfReadingService, PdfReadingService>();
         
         return services;
     }
