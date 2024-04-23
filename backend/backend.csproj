@@ -46,7 +46,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="KernelService\" />
+      <Folder Include="Controllers\Index\" />
     </ItemGroup>
 
 </Project>

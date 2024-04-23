@@ -3,10 +3,7 @@ namespace backend.EmbeddingService;
 public class EmbeddingService : IEmbeddingService
 {
     private readonly IOpenAiClient _openAiClient;
-
-    // private ITextEmbeddingGenerationService EmbeddingGenerationService =>
-    //     _kernel.GetRequiredService<ITextEmbeddingGenerationService>();
-
+    
     public EmbeddingService(IOpenAiClient openAiClient)
     {
         _openAiClient = openAiClient;
