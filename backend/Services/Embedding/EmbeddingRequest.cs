@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace backend.EmbeddingService;
+namespace backend.Services.Embedding;
 
 public record EmbeddingRequest()
 {

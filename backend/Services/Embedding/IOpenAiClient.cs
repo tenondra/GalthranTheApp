@@ -1,4 +1,4 @@
-namespace backend.EmbeddingService;
+namespace backend.Services.Embedding;
 
 public interface IOpenAiClient
 {

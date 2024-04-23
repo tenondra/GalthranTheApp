@@ -1,8 +1,7 @@
-using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
-namespace backend.EmbeddingService;
+namespace backend.Services.Embedding;
 
 public class OpenAiClient : IOpenAiClient
 {

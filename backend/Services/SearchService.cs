@@ -1,5 +1,5 @@
-using backend.EmbeddingService;
 using backend.Qdrant;
+using backend.Services.Embedding;
 
 namespace backend.Services;
 

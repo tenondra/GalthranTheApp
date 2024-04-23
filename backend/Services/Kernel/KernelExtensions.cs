@@ -1,7 +1,7 @@
 using Microsoft.KernelMemory;
 using Microsoft.SemanticKernel;
 
-namespace backend.EmbeddingService;
+namespace backend.Services.Kernel;
 
 public static class KernelExtensions
 {

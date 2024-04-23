@@ -1,12 +1,11 @@
-using Microsoft.KernelMemory;
 using Microsoft.SemanticKernel;
 
-namespace backend.EmbeddingService;
+namespace backend.Services.Kernel;
 
 public class KernelFactory : IKernelFactory
 {
-    public Kernel GetKernel() => _kernel;
-    private readonly Kernel _kernel;
+    public Microsoft.SemanticKernel.Kernel GetKernel() => _kernel;
+    private readonly Microsoft.SemanticKernel.Kernel _kernel;
     
     private readonly IConfiguration _configuration;
     
@@ -16,9 +15,9 @@ public class KernelFactory : IKernelFactory
         _kernel = CreateKernel();
     }
     
-    private Kernel CreateKernel()
+    private Microsoft.SemanticKernel.Kernel CreateKernel()
     {
-        var kernelBuilder = Kernel
+        var kernelBuilder = Microsoft.SemanticKernel.Kernel
             .CreateBuilder()
             .WithCustomOpenAiEmbeddingModel(_configuration);
 
