@@ -1,6 +1,5 @@
 using backend.EmbeddingService;
 using backend.Qdrant;
-using Microsoft.KernelMemory;
 
 namespace backend.Services;
 

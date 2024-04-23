@@ -2,6 +2,7 @@ using System.Net.Http.Headers;
 using backend.Controllers;
 using backend.EmbeddingService;
 using backend.Qdrant;
+using backend.Services;
 
 namespace backend;
 
@@ -18,6 +19,7 @@ public static class ServicesExtensions
         services.AddSingleton<IEmbeddingService, EmbeddingService.EmbeddingService>();
         services.AddSingleton<IKernelFactory, KernelFactory>();
         services.AddSingleton<IOpenAiClient, OpenAiClient>();
+        services.AddSingleton<ISearchService, SearchService>();
         
         return services;
     }
