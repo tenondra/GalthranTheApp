@@ -46,8 +46,4 @@
       <_ContentIncludedByDefault Remove="backend.Tests\obj\project.packagespec.json" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\Chunking\" />
-    </ItemGroup>
-
 </Project>
