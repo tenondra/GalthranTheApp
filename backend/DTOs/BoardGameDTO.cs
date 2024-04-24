@@ -15,13 +15,13 @@ public record BoardGameDTO
     public string Name { get; set; }
     
     [JsonPropertyName("previous_id")]
-    public Guid PreviousChunkId { get; set; }
+    public Guid? PreviousChunkId { get; set; }
     
     [JsonPropertyName("following_id")]
-    public Guid FollowingChunkId { get; set; }
+    public Guid? FollowingChunkId { get; set; }
     
     [JsonPropertyName("related_image_id")]
-    public Guid RelatedImageId { get; set; }
+    public Guid? RelatedImageId { get; set; }
 
     [JsonPropertyName("text")]
     public string Text { get; set; }
@@ -30,9 +30,9 @@ public record BoardGameDTO
     {
         ["group_id"] = dto.GroupId.ToString(),
         ["name"] = dto.Name,
-        ["previous_id"] = dto.PreviousChunkId.ToString(),
-        ["following_id"] = dto.FollowingChunkId.ToString(),
-        ["related_image_id"] = dto.RelatedImageId.ToString(),
+        ["previous_id"] = dto.PreviousChunkId.ToString() ?? "",
+        ["following_id"] = dto.FollowingChunkId.ToString() ?? "",
+        ["related_image_id"] = dto.RelatedImageId.ToString() ?? "",
         ["text"] = dto.Text
     };
 }
