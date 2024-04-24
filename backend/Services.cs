@@ -1,7 +1,9 @@
 using System.Net.Http.Headers;
 using backend.Qdrant;
 using backend.Services;
+using backend.Services.Chunking;
 using backend.Services.Embedding;
+using backend.Services.IndexingService;
 using backend.Services.Kernel;
 using backend.Services.PdfReading;
 
@@ -15,11 +17,15 @@ public static class ServicesExtensions
 
         services.AddSingleton<IQdrantClientFactory, QdrantClientFactory>();
         services.AddSingleton<IQdrantService, QdrantService>();
+        
         services.AddSingleton<IEmbeddingService, EmbeddingService>();
-        services.AddSingleton<IKernelFactory, KernelFactory>();
         services.AddSingleton<IOpenAiClient, OpenAiClient>();
+        services.AddSingleton<IKernelFactory, KernelFactory>();
+        
         services.AddSingleton<ISearchService, SearchService>();
         services.AddSingleton<IPdfReadingService, PdfReadingService>();
+        services.AddSingleton<IIndexingService, IndexingService>();
+        services.AddSingleton<IChunkingService, ChunkingService>();
         
         return services;
     }

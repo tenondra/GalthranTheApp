@@ -13,6 +13,8 @@ public class IndexingService : IIndexingService
     private readonly IEmbeddingService _embeddingService;
     private readonly IQdrantService _qdrantService;
 
+    private Guid _groupId;
+
     public IndexingService(
         IChunkingService chunkingService,
         IPdfReadingService pdfReadingService,
@@ -23,9 +25,11 @@ public class IndexingService : IIndexingService
         _pdfReadingService = pdfReadingService;
         _embeddingService = embeddingService;
         _qdrantService = qdrantService;
+
+        _groupId = new Guid();
     }
 
-    public void IndexDocument(string documentPath)
+    public async void IndexDocument(string documentPath)
     {
         var documentPages = _pdfReadingService.ReadPdf(documentPath);
         List<List<string>> chunkedPages = [];
@@ -33,30 +37,36 @@ public class IndexingService : IIndexingService
             .AddRange(documentPages
                 .Select(page => _chunkingService.ChunkPage(page)));
 
+        List<UpsertEmbeddingsData> data = [];
         foreach (var page in chunkedPages)
-            ProcessPage(page);
+            data.AddRange(await ProcessPage(page));
+        
+        await _qdrantService.UpsertEmbeddingsAsync(data);
     }
 
-    private void ProcessPage(List<string> page)
+    private async Task<IEnumerable<UpsertEmbeddingsData>> ProcessPage(List<string> page)
     {
+        List<UpsertEmbeddingsData> data = [];
         foreach (var chunk in page)
-            ProcessChunk(chunk);
+            data.Add(await ProcessChunk(chunk));
+
+        return data;
     }
 
-    private async void ProcessChunk(string chunk)
+    private async Task<UpsertEmbeddingsData> ProcessChunk(string chunk)
     {
         var embedding = await _embeddingService.GenerateEmbeddings(chunk);
         var embeddingVector = embedding.Data.First().Embedding.ToArray();
-        var gameDto = CreateGameDto(chunk);
-        var embeddingData = CreateEmbeddingData(embeddingVector, gameDto);
-        
-        _qdrantService.UpsertEmbeddingsAsync(new[] { embeddingData });
+        var id = Guid.NewGuid();
+        var gameDto = CreateGameDto(chunk, id, _groupId);
+        return CreateEmbeddingData(embeddingVector, gameDto);
     }
 
-    private static BoardGameDTO CreateGameDto(string text) => new()
+    private static BoardGameDTO CreateGameDto(string text, Guid id, Guid groupId) => new()
     {
+        Id = id,
         Name = "Heroes3",
-        GroupId = Guid.NewGuid(),
+        GroupId = groupId,
         Text = text
     };
 

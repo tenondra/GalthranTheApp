@@ -18,7 +18,7 @@ public class QdrantService : IQdrantService
     }
 
     // https://qdrant.tech/documentation/guides/optimize/
-    public async void CreateCollectionAsync(string collectionName)
+    public async Task CreateCollectionAsync(string collectionName)
     {
         await _qdrantClient.CreateCollectionAsync(
             collectionName: collectionName,
@@ -29,7 +29,7 @@ public class QdrantService : IQdrantService
 
     private static VectorParams SetupParams() => new() { Size = 1536, Distance = Distance.Cosine };
 
-    public async void UpsertEmbeddingsAsync(IEnumerable<UpsertEmbeddingsData> data)
+    public async Task UpsertEmbeddingsAsync(IEnumerable<UpsertEmbeddingsData> data)
     {
         await _qdrantClient.UpsertAsync(
             CollectionName,
