@@ -4,6 +4,7 @@ import {Flex} from "@chakra-ui/react";
 import Loading from "../components/Loading.tsx";
 
 const Home = lazy(() => import('../pages/Home'))
+const NewGameImport = lazy(() => import('../pages/NewGameImport'))
 
 export default function Router() {
 	return (
@@ -17,6 +18,7 @@ export default function Router() {
 			>
 				<Routes>
 					<Route path="/" element={<Home/>}/>
+					<Route path="/import" element={<NewGameImport/>}/>
 				</Routes>
 			</Suspense>
 		</BrowserRouter>
